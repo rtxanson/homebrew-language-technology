@@ -19,6 +19,8 @@ class Hfst < Formula
   def install
     # ENV.j1  # if your formula's build system can't parallelize
 
+    opts = []
+
     system "./configure", *opts
     system "make"
     # system "cmake", ".", *std_cmake_args
