@@ -1,4 +1,4 @@
-# Nginx Homebrew Tap  
+# Homebrew Language Technology tap
 
 This tap is designed specifically for a custom build of Nginx with more module options.
 
