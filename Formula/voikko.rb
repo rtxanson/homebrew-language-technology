@@ -9,7 +9,7 @@ class Voikko < Formula
   sha1 "b6d7ec669bbc33ba5f526f53b1d297f9ee315178"
   head "http://beta.visl.sdu.dk/svn/visl/tools/vislcg3/trunk", :using => :svn
 
-  depends_on "pkgconfig"
+  depends_on "pkg-config" => :build
   # TODO: libiconv
   depends_on "gettext"
   depends_on "glib"
@@ -27,7 +27,7 @@ class Voikko < Formula
     ENV["CPPFLAGS"] = "-I#{HOMEBREW_PREFIX}"
     ENV["CXXFLAGS"] = "-L#{HOMEBREW_PREFIX}/lib"
 
-    system "./configure", "--prefix=#{HOMEBREW_PREFIX}",
+    system "./configure", "--prefix=#{prefix}",
                           "--with-dictionary-path=#{HOMEBREW_PREFIX}/lib/voikko/"
 
     system "make"
