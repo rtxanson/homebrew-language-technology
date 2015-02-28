@@ -6,8 +6,8 @@ require 'formula'
 class Hfst < Formula
   homepage 'http://hfst.sourceforge.net/'
   head "svn://svn.code.sf.net/p/hfst/code/trunk hfst-code"
-  url 'http://downloads.sourceforge.net/project/hfst/hfst/archive/hfst-3.8.1.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fhfst%2Ffiles%2F&ts=1422564128&use_mirror=softlayer-dal'
-  sha1 '56592bfab53a055e07e216be0ae5822cdae2db7e'
+  url 'http://downloads.sourceforge.net/project/hfst/hfst/source/hfst-3.8.2.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fhfst%2Ffiles%2Fhfst%2Fsource%2F&ts=1425162646&use_mirror=tcpdiag'
+  sha1 'b9d57b6db858b4a5f6f50b6453f7c1d0a978dd04'
 
   # depends_on 'cmake' => :build
   # depends_on :x11 # if your formula requires any X11/XQuartz components
