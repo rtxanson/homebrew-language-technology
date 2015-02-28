@@ -1,7 +1,6 @@
 # Homebrew Language Technology Tap
 
-This tap is designed specifically for a custom build of Nginx with more module options.
-
+A tap for language technology modules using [homebrew](http://brew.sh/).
 
 ## Installation
 
