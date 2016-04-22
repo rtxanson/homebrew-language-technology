@@ -1,29 +1,36 @@
 require 'formula'
 
-# Documentation: https://github.com/mxcl/homebrew/wiki/Formula-Cookbook
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-
 class Hfst < Formula
-  homepage 'http://hfst.sourceforge.net/'
-  head "svn://svn.code.sf.net/p/hfst/code/trunk hfst-code"
-  url 'http://downloads.sourceforge.net/project/hfst/hfst/source/hfst-3.8.2.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fhfst%2Ffiles%2Fhfst%2Fsource%2F&ts=1425162646&use_mirror=tcpdiag'
-  sha1 'b9d57b6db858b4a5f6f50b6453f7c1d0a978dd04'
+  homepage 'http://hfst.github.io/'
+  head "git@github.com:hfst/hfst.git"
+  url 'https://github.com/hfst/hfst/releases/download/v3.10.0/hfst-3.10.0.tar.gz'
+  sha256 '666f4bd6a08c5060135fdea357f300dbf455057c49540926f8b2ee59d9f66801'
 
-  # depends_on 'cmake' => :build
-  # depends_on :x11 # if your formula requires any X11/XQuartz components
-  #
-  # TODO: --with-unicode-handler ?
+  depends_on 'icu4c' => :build
+  # bison > 3.0 is a requirement, otherwise there's some xre compilation failure
+  depends_on 'bison'
 
   option "with-xfst", "Build XFST tool"
+  option "with-foma", "Build FOMA tool."
+
 
   def install
-    # ENV.j1  # if your formula's build system can't parallelize
 
-    opts = []
+    opts = ['--enable-all-tools', '--with-unicode-handler=icu4']
 
+    if build.with? "foma"
+      opts.push '--with-foma'
+    else
+      opts.push '--without-foma'
+    end
+
+    if build.head?
+      ENV['LDFLAGS'] = "-stdlib=libstdc++"
+      ENV['CXXFLAGS'] = "-stdlib=libstdc++"
+      system "./autogen.sh"
+    end
     system "./configure", *opts
     system "make"
-    # system "cmake", ".", *std_cmake_args
     system "make", "install" # if this fails, try separate make/make install steps
   end
 
